@@ -14,12 +14,12 @@ public class Server {
     public static void main(String[] args) throws Exception{
 
         ServerConfig serverConfig = new ServerConfig();
-        serverConfig.load("core.json");
+        serverConfig.load("C:\\m.khojasteh\\workspace\\DepositOperation\\src\\main\\resources\\core.json");
         List<Deposit> deposits = serverConfig.getDeposits();
         DepositManager.getInstance().loadInitialData(deposits);
 
-        int port = serverConfig.getPort();
-        ServerSocket serverSocket = new ServerSocket(port);
+        long port = serverConfig.getPort();
+        ServerSocket serverSocket = new ServerSocket(((int) port));
         while (true){
             Socket socket = serverSocket.accept();
             ClientHandler clientHandler = new ClientHandler(socket);

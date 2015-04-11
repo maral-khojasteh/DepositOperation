@@ -4,6 +4,7 @@ import model.Transaction;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /**
@@ -20,8 +21,10 @@ public class ClientHandler extends Thread{
     @Override
     public void run() {
         ObjectInputStream in = null;
+        ObjectOutputStream out = null;
         try {
             in = new ObjectInputStream(socket.getInputStream());
+            out = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -29,8 +32,7 @@ public class ClientHandler extends Thread{
         while (true){
             try {
                 Transaction transaction = (Transaction) in.readObject();
-                DepositManager.getInstance().process(transaction);
-
+                out.writeObject(DepositManager.getInstance().process(transaction));
 
             } catch (IOException e) {
                 e.printStackTrace();

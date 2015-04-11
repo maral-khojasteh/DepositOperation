@@ -12,6 +12,21 @@ public class Transaction implements Serializable {
     private TransactionType type;
     private BigDecimal amount;
     private String depositId;
+    private String resultMessage;
+    private BigDecimal depositBalance;
+
+    public BigDecimal getDepositBalance() {
+        return depositBalance;
+    }
+    public void setDepositBalance(BigDecimal depositBalance) {
+        this.depositBalance = depositBalance;
+    }
+    public String getResultMessage() {
+        return resultMessage;
+    }
+    public void setResultMessage(String resultMessage) {
+        this.resultMessage = resultMessage;
+    }
 
     public String getId() {
         return id;
