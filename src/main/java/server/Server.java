@@ -21,7 +21,9 @@ public class Server {
         long port = serverConfig.getPort();
         ServerSocket serverSocket = new ServerSocket(((int) port));
         while (true){
+            System.out.println("before");
             Socket socket = serverSocket.accept();
+            System.out.println("after");
             ClientHandler clientHandler = new ClientHandler(socket);
             clientHandler.start();
         }

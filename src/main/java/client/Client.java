@@ -21,12 +21,12 @@ public class Client {
         String address = terminalConfig.getServerIP();
         try {
             Socket socket = new Socket(address, port);
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
             List<Transaction> transactions = terminalConfig.getTransactions();
             for(Transaction transaction: transactions){
                 out.writeObject(transaction);
                 out.flush();
+                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
                 Transaction result = (Transaction) in.readObject();//maybe it needs to a TransactionResult object instead of Transaction object
                 System.out.println("client result" + result.getDepositId());
             }
