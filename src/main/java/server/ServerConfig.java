@@ -65,7 +65,7 @@ public class ServerConfig {
                 }
             }
             FileWriter fileWriter = new FileWriter(input);
-            System.out.println(jsonObject.toJSONString());
+            //System.out.println(jsonObject.toJSONString());
             fileWriter.write(jsonObject.toJSONString());
             fileWriter.close();
 

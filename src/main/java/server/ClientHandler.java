@@ -31,9 +31,7 @@ public class ClientHandler extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        logger.log(Level.INFO, "Ready to handle the client...");
-
+        //logger.log(Level.INFO, "Ready to handle the client...");
         try {
             while (true){
                 Transaction transaction = (Transaction) in.readObject();

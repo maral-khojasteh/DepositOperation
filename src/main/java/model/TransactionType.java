@@ -5,16 +5,7 @@ package model;
  */
 public enum  TransactionType{
 
-    DEPOSIT("deposit"),
-    WITHDRAW("withdraw");
+    DEPOSIT,
+    WITHDRAW;
 
-    private String type;
-
-    private TransactionType(String t) {
-        type = t;
-    }
-
-    public String geTransactionType() {
-        return type;
-    }
 }
