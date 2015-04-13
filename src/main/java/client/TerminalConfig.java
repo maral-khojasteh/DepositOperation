@@ -38,20 +38,20 @@ public class TerminalConfig {
         Element rootNode = document.getRootElement();
         List<Element> serverSpec = rootNode.getChildren("server");
         List<Element> outLog = rootNode.getChildren("outLog");
-        List<Element> transactionElements = rootNode.getChildren("transactions");
+        List<Element> transactionElements = rootNode.getChild("transactions").getChildren("transaction");
         for(Element e: serverSpec){
             serverIP = e.getAttribute("ip").getValue();
             port = Integer.parseInt(e.getAttribute("port").getValue());
         }
         for (Element e : transactionElements) {
             Transaction transaction = new Transaction();
-            transaction.setId(e.getChild("transaction").getAttribute("id").getValue());
-            if(e.getChild("transaction").getAttribute("type").getValue() == "deposit")
+            transaction.setId(e.getAttribute("id").getValue());
+            if (e.getAttribute("type").getValue() == "deposit")
                 transaction.setType(TransactionType.DEPOSIT);
-            else if(e.getChild("transaction").getAttribute("type").getValue() == "withdraw")
+            else if (e.getAttribute("type").getValue() == "withdraw")
                 transaction.setType(TransactionType.WITHDRAW);
-            transaction.setAmount(new BigDecimal(e.getChild("transaction").getAttribute("amount").getValue()));//TODO: test it with string value to handle error
-            transaction.setDepositId(e.getChild("transaction").getAttribute("deposit").getValue());
+            transaction.setAmount(new BigDecimal(e.getAttribute("amount").getValue()));//TODO: test it with string value to handle error
+            transaction.setDepositId(e.getAttribute("deposit").getValue());
             transactions.add(transaction);
         }
     }

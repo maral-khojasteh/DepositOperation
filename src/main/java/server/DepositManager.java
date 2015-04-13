@@ -25,7 +25,7 @@ public class DepositManager {
 
     public void  loadInitialData(List<Deposit> deposits){
          depositsMap = new HashMap<String, Deposit>();
-         for(Deposit deposit: deposits){
+         for (Deposit deposit: deposits){
              depositsMap.put(deposit.getId(), deposit);
          }
     }
@@ -36,16 +36,15 @@ public class DepositManager {
         String message = "";
         BigDecimal initialBalance = deposit.getInitialBalance();
         BigDecimal depositBalance;
-        if(deposit == null){
+        if (deposit == null){
             message = "Deposit with id: " + transaction.getDepositId() + " is not found";
-        }
-        else{
+        } else {
             synchronized (deposit){
-                if(transaction.getAmount().compareTo(BigDecimal.ZERO) == -1){
+                if (transaction.getAmount().compareTo(BigDecimal.ZERO) == -1){
                     message = "Amount is negative";
                 }
-                else{
-                    if(transaction.getType() == TransactionType.DEPOSIT){
+                else {
+                    if (transaction.getType() == TransactionType.DEPOSIT){
                         depositBalance = deposit.getInitialBalance().add(transaction.getAmount());
                         if(depositBalance.compareTo(deposit.getUpperBound()) == 1){
                             message =  "Initial balance become bigger than upper bound";
@@ -57,6 +56,7 @@ public class DepositManager {
                             //update deposit
                             ServerConfig serverConfig = new ServerConfig();
                             serverConfig.update("core.json", transaction.getDepositId(), depositBalance);
+
                         }
                     }
                     else if(transaction.getType() == TransactionType.WITHDRAW){
