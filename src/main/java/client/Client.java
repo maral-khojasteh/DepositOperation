@@ -3,11 +3,9 @@ package client;
 import model.Transaction;
 import org.jdom.JDOMException;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,13 +25,19 @@ public class Client {
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 
             List<Transaction> transactions = terminalConfig.getTransactions();
-            System.out.println(transactions.size());
+            File file = new File("src/main/resources/response.xml");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fileWriter = new FileWriter(file);
+            ArrayList<Transaction> results = new ArrayList<>();
             for (Transaction transaction: transactions){
                 out.writeObject(transaction);
                 out.flush();
                 Transaction result = (Transaction) in.readObject(); // maybe it needs to a TransactionResult object instead of Transaction object
-                System.out.println("Server result: " + result.getDepositId());
+                results.add(result);
             }
+            terminalConfig.write(results, fileWriter);
         } catch (IOException e) {
             e.printStackTrace();
         }

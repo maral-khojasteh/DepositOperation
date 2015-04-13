@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<responses>
+  <response id="1" amount="3000" deposit="33227781" depositBalance="10000" message="Deposit is done" />
+  <response id="2" amount="10000" deposit="35527439" depositBalance="0" message="Initial balance is not enough" />
+</responses>
+

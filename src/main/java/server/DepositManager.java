@@ -55,7 +55,7 @@ public class DepositManager {
                             deposit.setInitialBalance(depositBalance);
                             //update deposit
                             ServerConfig serverConfig = new ServerConfig();
-                            serverConfig.update("core.json", transaction.getDepositId(), depositBalance);
+                            serverConfig.update("src/main/resources/core.json", transaction.getDepositId(), depositBalance);
 
                         }
                     }
@@ -70,7 +70,7 @@ public class DepositManager {
                             deposit.setInitialBalance(depositBalance);
                             //update deposit
                             ServerConfig serverConfig = new ServerConfig();
-                            serverConfig.update("core.json", transaction.getDepositId(), depositBalance);
+                            serverConfig.update("src/main/resources/core.json", transaction.getDepositId(), depositBalance);
                         }
                     }
                     else{

@@ -6,10 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -63,16 +60,14 @@ public class ServerConfig {
             Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
             while (jsonObjectIterator.hasNext()){
                 JSONObject depositJsonObject = jsonObjectIterator.next();
-                if(depositJsonObject.get("id") == depositId){
-                    System.out.println("initialBalance" + initialBalance);
+                if(depositJsonObject.get("id").equals(new String(depositId))){
                     depositJsonObject.put("initialBalance", initialBalance);
                 }
             }
-            FileWriter file = new FileWriter(input, true);
+            FileWriter fileWriter = new FileWriter(input);
             System.out.println(jsonObject.toJSONString());
-            file.write(jsonObject.toJSONString());
-            file.flush();
-            file.close();
+            fileWriter.write(jsonObject.toJSONString());
+            fileWriter.close();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

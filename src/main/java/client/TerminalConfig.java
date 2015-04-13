@@ -2,11 +2,15 @@ package client;
 
 import model.Transaction;
 import model.TransactionType;
+import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -46,13 +50,38 @@ public class TerminalConfig {
         for (Element e : transactionElements) {
             Transaction transaction = new Transaction();
             transaction.setId(e.getAttribute("id").getValue());
-            if (e.getAttribute("type").getValue() == "deposit")
+            if (e.getAttribute("type").getValue().equals(new String("deposit"))){
                 transaction.setType(TransactionType.DEPOSIT);
-            else if (e.getAttribute("type").getValue() == "withdraw")
+            }
+            else if (e.getAttribute("type").getValue().equals(new String("withdraw"))){
                 transaction.setType(TransactionType.WITHDRAW);
+            }
             transaction.setAmount(new BigDecimal(e.getAttribute("amount").getValue()));//TODO: test it with string value to handle error
             transaction.setDepositId(e.getAttribute("deposit").getValue());
             transactions.add(transaction);
+        }
+    }
+
+    public void write(ArrayList<Transaction> results, FileWriter fileWriter){
+
+        Element responses = new Element("responses");
+        Document document = new Document(responses);
+        for(Transaction result: results){
+            Element response = new Element("response");
+            response.setAttribute(new Attribute("id", result.getId()));
+            //response.setAttribute(new Attribute("type", result.getType().toString()));
+            response.setAttribute(new Attribute("amount", String.valueOf(result.getAmount())));
+            response.setAttribute(new Attribute("deposit", result.getDepositId()));
+            response.setAttribute(new Attribute("depositBalance", String.valueOf(result.getDepositBalance())));
+            response.setAttribute(new Attribute("message", result.getResultMessage()));
+            document.getRootElement().addContent(response);
+        }
+        XMLOutputter xmlOutputter = new XMLOutputter();
+        xmlOutputter.setFormat(Format.getPrettyFormat());
+        try {
+            xmlOutputter.output(document, fileWriter);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
