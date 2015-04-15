@@ -15,13 +15,11 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Maral ito
- * Date: 4/10/15
- * Time: 4:10 PM
- * To change this template use File | Settings | File Templates.
+ @author Maral Khojasteh
  */
 public class TerminalConfig {
 
@@ -31,6 +29,7 @@ public class TerminalConfig {
     private String logFile;
     private int port;
     private List<Transaction> transactions = new ArrayList<>();
+    private  static Logger logger = Logger.getLogger(TerminalConfig.class.getName());
 
     public TerminalConfig() {
 
@@ -40,8 +39,9 @@ public class TerminalConfig {
         SAXBuilder builder = new SAXBuilder();
         Document document = builder.build(input);
         Element rootNode = document.getRootElement();
+        terminalId = rootNode.getAttribute("id").getValue();
         List<Element> serverSpec = rootNode.getChildren("server");
-        List<Element> outLog = rootNode.getChildren("outLog");
+        //List<Element> outLog = rootNode.getChildren("outLog");
         List<Element> transactionElements = rootNode.getChild("transactions").getChildren("transaction");
         for(Element e: serverSpec){
             serverIP = e.getAttribute("ip").getValue();
@@ -60,6 +60,7 @@ public class TerminalConfig {
             transaction.setDepositId(e.getAttribute("deposit").getValue());
             transactions.add(transaction);
         }
+        logger.log(Level.INFO, "Terminal {0}: Transactions are loaded", new Object[]{terminalId});
     }
 
     public void write(ArrayList<Transaction> results, FileWriter fileWriter){
@@ -80,8 +81,9 @@ public class TerminalConfig {
         xmlOutputter.setFormat(Format.getPrettyFormat());
         try {
             xmlOutputter.output(document, fileWriter);
+            logger.log(Level.INFO, "Terminal {0}: response file was updated", new Object[]{terminalId});
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Terminal {0}: response file is not found for update!", new Object[]{terminalId});
         }
     }
 

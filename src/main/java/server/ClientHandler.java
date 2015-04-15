@@ -10,12 +10,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by Dotin school 5 on 4/11/2015.
+ * @author Maral Khojasteh
  */
 public class ClientHandler extends Thread{
 
+    private static Logger logger = Logger.getLogger(ServerConfig.class.getName());
     private Socket socket;
-    private static Logger logger = Logger.getLogger("Client Handler");
 
     public ClientHandler(Socket socket){
         this.socket = socket;
@@ -31,7 +31,7 @@ public class ClientHandler extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //logger.log(Level.INFO, "Ready to handle the client...");
+        logger.log(Level.INFO, "Ready to handle the client...");
         try {
             while (true){
                 Transaction transaction = (Transaction) in.readObject();

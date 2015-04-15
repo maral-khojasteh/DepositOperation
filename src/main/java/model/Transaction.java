@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * Created by Dotin school 5 on 4/11/2015.
+ * @author Maral Khojasteh
  */
 public class Transaction implements Serializable {
 

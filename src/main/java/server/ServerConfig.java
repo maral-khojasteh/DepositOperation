@@ -11,13 +11,16 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
- * Created by Dotin school 5 on 4/11/2015.
+ * @author Maral Khojasteh
  */
 public class ServerConfig {
 
+    private static Logger logger = Logger.getLogger(ServerConfig.class.getName());
     private long port;
     private List<Deposit> deposits = new ArrayList<>();
     private String logFile;
@@ -28,7 +31,7 @@ public class ServerConfig {
             JSONParser jsonParser = new JSONParser();
             JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
             port = (long) jsonObject.get("port");
-            logFile = (String) jsonObject.get("outLog");
+            //logFile = (String) jsonObject.get("outLog");
             JSONArray jsonArray = (JSONArray) jsonObject.get("deposits");
             Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
             while (jsonObjectIterator.hasNext()){
@@ -40,14 +43,14 @@ public class ServerConfig {
                 deposit.setUpperBound(new BigDecimal(depositJsonObject.get("upperBound").toString()));
                 deposits.add(deposit);
             }
-
+            logger.log(Level.INFO, "Server configuration is loaded..");
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Server config file is not found!", e);
         }catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "File reader left!", e);
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error in parsing server config file...", e);
         }
     }
 
@@ -68,13 +71,14 @@ public class ServerConfig {
             //System.out.println(jsonObject.toJSONString());
             fileWriter.write(jsonObject.toJSONString());
             fileWriter.close();
+            logger.log(Level.INFO, "Deposits were updated..");
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Server config file is not found for update!", e);
         }catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "File reader left!", e);
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error in parsing server config file...", e);
         }
     }
 

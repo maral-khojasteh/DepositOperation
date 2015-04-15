@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Created by Dotin school 5 on 4/11/2015.
+ * @author Maral Khojasteh
  */
 public enum  TransactionType{
 

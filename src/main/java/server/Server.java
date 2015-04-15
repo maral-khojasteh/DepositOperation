@@ -1,19 +1,29 @@
 package server;
 
-import model.CustomLogger;
 import model.Deposit;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /**
- * Created by Dotin school 5 on 4/11/2015.
+ * @author Maral Khojasteh
  */
 public class Server {
 
-    //private static Logger logger = Logger.getLogger("Server");
+    private static Logger logger = Logger.getLogger(Server.class.getName());
+
+    static {
+        try {
+            LogManager.getLogManager().readConfiguration(Server.class.getResourceAsStream("/serverLogging.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) throws Exception{
 
@@ -24,18 +34,11 @@ public class Server {
         long port = serverConfig.getPort();
         ServerSocket serverSocket = new ServerSocket(((int) port));
 
-//        String logFile = serverConfig.getLogFile();
-//        FileHandler fileHandler = new FileHandler(logFile, true);
-//        SimpleFormatter formatter = new SimpleFormatter();
-//        fileHandler.setFormatter(formatter);
-//        logger.addHandler(fileHandler);
-//        logger.log(Level.INFO, "Listening to port {0}", port);
-        CustomLogger customLogger = new CustomLogger();
-        customLogger.log(Level.INFO, "Listening to port {0}", port+"");
+        logger.log(Level.INFO, "Listening to port {0}", port);
+
         while (true){
             Socket socket = serverSocket.accept();
-            customLogger.log(Level.INFO, "New client received...");
-            //logger.log(Level.INFO, "New client received...");
+            logger.log(Level.INFO, "New client received...");
             ClientHandler clientHandler = new ClientHandler(socket);
             clientHandler.start();
         }
