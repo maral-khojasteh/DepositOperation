@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <responses>
-  <response id="1" amount="1000000" deposit="33227781" depositBalance="934000" message="Initial balance become bigger than upper bound" />
-  <response id="2" amount="10000" deposit="35527439" depositBalance="1000" message="Initial balance is not enough" />
+  <response id="1" amount="200" deposit="33227781" depositBalance="300" message="Transaction is done." />
+  <response id="2" amount="100" deposit="35527439" depositBalance="50" message="Not enough credits!" />
 </responses>
 

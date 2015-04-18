@@ -9,7 +9,7 @@ public class Deposit {
 
     private String id;
     private String customerName;
-    private BigDecimal initialBalance;
+    private BigDecimal balance;
     private BigDecimal upperBound;
 
     public String getId() {
@@ -28,12 +28,12 @@ public class Deposit {
         this.customerName = customerName;
     }
 
-    public BigDecimal getInitialBalance() {
-        return initialBalance;
+    public BigDecimal getBalance() {
+        return balance;
     }
 
-    public void setInitialBalance(BigDecimal initialBalance) {
-        this.initialBalance = initialBalance;
+    public void setBalance(BigDecimal initialBalance) {
+        this.balance = initialBalance;
     }
 
     public BigDecimal getUpperBound() {

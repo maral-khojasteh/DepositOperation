@@ -56,7 +56,7 @@ public class Client {
                     for (Transaction transaction: transactions){
                         out.writeObject(transaction);
                         out.flush();
-                        Transaction result = null; // maybe it needs to a TransactionResult object instead of Transaction object
+                        Transaction result = null; // maybe it needs to a ResultCode object instead of Transaction object
                         try {
                             result = (Transaction) in.readObject();
                         } catch (ClassNotFoundException e) {
@@ -101,7 +101,7 @@ public class Client {
                     for (Transaction transaction: transactions){
                         out.writeObject(transaction);
                         out.flush();
-                        Transaction result = null; // maybe it needs to a TransactionResult object instead of Transaction object
+                        Transaction result = null; // maybe it needs to a ResultCode object instead of Transaction object
                         try {
                             result = (Transaction) in.readObject();
                         } catch (ClassNotFoundException e) {

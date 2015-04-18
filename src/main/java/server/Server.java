@@ -28,13 +28,13 @@ public class Server {
     public static void main(String[] args) throws Exception{
 
         ServerConfig serverConfig = new ServerConfig();
-        serverConfig.load("src/main/resources/core.json");
-        List<Deposit> deposits = serverConfig.getDeposits();
+        List<Deposit> deposits = serverConfig.load("src/main/resources/core.json");
+        //List<Deposit> deposits = serverConfig.getDeposits();
         DepositManager.getInstance().loadInitialData(deposits);
         long port = serverConfig.getPort();
         ServerSocket serverSocket = new ServerSocket(((int) port));
 
-        logger.log(Level.INFO, "Listening to port {0}", port);
+        logger.log(Level.INFO, "Listening to port {0}", String.valueOf(port));
 
         while (true){
             Socket socket = serverSocket.accept();

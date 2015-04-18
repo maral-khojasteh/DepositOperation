@@ -8,9 +8,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,10 +20,11 @@ public class ServerConfig {
 
     private static Logger logger = Logger.getLogger(ServerConfig.class.getName());
     private long port;
-    private List<Deposit> deposits = new ArrayList<>();
+    //private List<Deposit> deposits = new ArrayList<>();
     private String logFile;
 
-    public void load(String input){
+    public List<Deposit> load(String input){
+        List<Deposit> deposits = new ArrayList<Deposit>();
         try {
             FileReader reader = new FileReader(input);
             JSONParser jsonParser = new JSONParser();
@@ -39,7 +38,7 @@ public class ServerConfig {
                 Deposit deposit = new Deposit();
                 deposit.setCustomerName((String) depositJsonObject.get("customer"));
                 deposit.setId((String) depositJsonObject.get("id"));
-                deposit.setInitialBalance(new BigDecimal(depositJsonObject.get("initialBalance").toString()));
+                deposit.setBalance(new BigDecimal(depositJsonObject.get("initialBalance").toString()));
                 deposit.setUpperBound(new BigDecimal(depositJsonObject.get("upperBound").toString()));
                 deposits.add(deposit);
             }
@@ -52,6 +51,7 @@ public class ServerConfig {
         } catch (ParseException e) {
             logger.log(Level.SEVERE, "Error in parsing server config file...", e);
         }
+        return deposits;
     }
 
     public void update(String input, String depositId, BigDecimal initialBalance){
@@ -90,13 +90,13 @@ public class ServerConfig {
         this.port = port;
     }
 
-    public List<Deposit> getDeposits() {
-        return deposits;
-    }
-
-    public void setDeposits(List<Deposit> deposits) {
-        this.deposits = deposits;
-    }
+//    public List<Deposit> getDeposits() {
+//        return deposits;
+//    }
+//
+//    public void setDeposits(List<Deposit> deposits) {
+//        this.deposits = deposits;
+//    }
 
     public String getLogFile() {
         return logFile;
