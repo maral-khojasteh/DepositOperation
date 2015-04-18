@@ -1,0 +1,46 @@
+Apr 18, 2015 9:24:52 AM server.ServerConfig load
+INFO: Server configuration is loaded..
+Apr 18, 2015 9:24:52 AM server.DepositManager loadInitialData
+INFO: Deposits are loaded...
+Apr 18, 2015 9:24:52 AM server.Server main
+INFO: Listening to port 8080
+Apr 18, 2015 9:24:58 AM server.Server main
+INFO: New client received...
+Apr 18, 2015 9:24:58 AM server.Server main
+INFO: New client received...
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+INFO: Ready to handle the client...
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+INFO: Ready to handle the client...
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+INFO: Transaction received from client: 33227781, DEPOSIT
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+INFO: Transaction received from client: 33227781, DEPOSIT
+Apr 18, 2015 9:24:58 AM server.ServerConfig update
+INFO: Deposits were updated..
+Apr 18, 2015 9:24:58 AM server.DepositManager process
+INFO: Transaction is done.
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+INFO: Transaction processed
+Apr 18, 2015 9:24:58 AM server.DepositManager process
+WARNING: Upper Bound exceeded
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+INFO: Transaction processed
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+INFO: Transaction received from client: 35527439, WITHDRAW
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+INFO: Transaction received from client: 35527439, WITHDRAW
+Apr 18, 2015 9:24:58 AM server.ServerConfig update
+INFO: Deposits were updated..
+Apr 18, 2015 9:24:58 AM server.DepositManager process
+INFO: Transaction is done.
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+INFO: Transaction processed
+Apr 18, 2015 9:24:58 AM server.DepositManager process
+WARNING: Not enough credits!
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+INFO: Transaction processed
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+WARNING: Client left!
+Apr 18, 2015 9:24:58 AM server.ClientHandler run
+WARNING: Client left!

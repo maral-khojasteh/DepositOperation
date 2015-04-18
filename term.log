@@ -1,0 +1,16 @@
+Apr 18, 2015 9:24:58 AM client.TerminalConfig load
+INFO: Terminal 21375: Transactions are loaded
+Apr 18, 2015 9:24:58 AM client.TerminalConfig load
+INFO: Terminal 21374: Transactions are loaded
+Apr 18, 2015 9:24:58 AM client.Client$1 run
+INFO: Terminal 21374 is connected on port 8,080
+Apr 18, 2015 9:24:58 AM client.Client$2 run
+INFO: Terminal 21375 is connected on port 8080
+Apr 18, 2015 9:24:58 AM client.TerminalConfig write
+INFO: Terminal 21375: response file was updated
+Apr 18, 2015 9:24:58 AM client.Client$2 run
+INFO: Result is received at terminal 21375...
+Apr 18, 2015 9:24:58 AM client.TerminalConfig write
+INFO: Terminal 21374: response file was updated
+Apr 18, 2015 9:24:58 AM client.Client$1 run
+INFO: Result is received at terminal 21374...

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<responses>
+  <response id="1" amount="800" deposit="33227781" depositBalance="300" message="Upper Bound exceeded" />
+  <response id="2" amount="150" deposit="35527439" depositBalance="50" message="Transaction is done." />
+</responses>
+
